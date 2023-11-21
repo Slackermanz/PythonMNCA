@@ -31,14 +31,11 @@ def MNCA_Test(input_buffer):
     kernel1 = generate_circular_kernel(3)
     kernel2 = generate_circular_kernel(8)
 
-    # Perform the convolution
+    # Perform the convolutions
     result1 = convolve2d(input_buffer, kernel1 / np.sum(kernel1), mode='same', boundary='wrap')
     result2 = convolve2d(input_buffer, kernel2 / np.sum(kernel2), mode='same', boundary='wrap')
 
-
-    #condition2 = (result2 > 0.0) & (result2 < 0.15)
-    #update2 = np.where(condition2, update1 - 0.1, update1)
-
+    # Apply conditional update functions
     condition3 = (result2 > 0.12) & (result2 < 0.42)
     update3 = np.where(condition3, input_buffer - 0.14, input_buffer)
 
